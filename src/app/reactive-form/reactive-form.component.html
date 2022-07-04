@@ -1,0 +1,13 @@
+<h3>Задание 2</h3>
+<form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+  <label for="email">Email</label>
+  <input type="text" formControlName = "email"/>
+
+  <label for="password">Password</label>
+  <input type="text" formControlName = "password"/>
+  <p *ngIf="form.controls['password'].errors && !form.pristine">Пароль должен быть не менее 8 символов</p>
+
+  <button type="submit" [disabled]="form.invalid">Отправить</button>
+</form>
+
+<p>{{form.value | json}}</p>

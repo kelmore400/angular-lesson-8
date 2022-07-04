@@ -1,0 +1,22 @@
+<h3>Задание 3</h3>
+<form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+  <label for="email">Email</label>
+  <input type="text" formControlName = "email"/>
+
+  <label for="password">Password</label>
+  <input type="text" formControlName = "password"/>
+  <p *ngIf="form.controls['password'].errors && !form.controls['password'].pristine">Пароль должен быть не менее 8 символов</p>
+
+  <div formArrayName="hobbies" *ngFor="let hobby of this.hobbies.controls; let i=index">
+		Ваши увлечения 
+		<input type="text" [formControlName]="i">
+	</div>
+
+  <button type="button" (click)="addHobby()">Добавить увлечение</button>
+
+  <input type="checkbox" [checked]="!form.invalid" disabled/>
+
+  <button type="submit" [disabled]="form.invalid">Отправить</button>
+</form>
+
+<p>{{form.value | json}}</p>
